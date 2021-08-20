@@ -1,0 +1,16 @@
+.custom_slider {
+    width: 90%;
+    margin: auto
+}
+
+.custom_slider .rc-slider-track {
+    background-color: white;
+}
+
+.custom_slider .rc-slider-step {
+    display: none;
+}
+
+.custom_slider .rc-slider-handle {
+    border-color: white;
+}

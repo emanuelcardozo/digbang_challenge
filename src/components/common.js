@@ -21,10 +21,19 @@ export const Title = styled.h1`
 `
 
 export const PerMonth = styled.div`
-  background-color: ${COLORS.PER_MONTH_BACKGROUND};
+  display: flex;
+  justify-content: space-between;
+  padding: .5em 1.5em;
   text-transform: uppercase;
-  padding: 1.5em;
   font-weight: 700;
+  background-color: ${COLORS.PER_MONTH_BACKGROUND};
+`
+export const Label = styled.div`
+  margin: auto 0;
+`
+
+export const PerMonthValue = styled.div`
+  font-size: 2.5em;
 `
 
 export const ButtonsContainer = styled.div`
@@ -38,6 +47,7 @@ export const CreditButton = styled.div`
   font-size: 1.5em;
   text-transform: uppercase;
   padding: .75em;
+  margin: auto 0;
   font-weight: 700;
   cursor: pointer;
 

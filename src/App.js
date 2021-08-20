@@ -1,3 +1,4 @@
+import CustomSlider from './components/CustomSlider';
 import { 
   Main,
   Container,
@@ -5,7 +6,9 @@ import {
   PerMonth,
   ButtonsContainer,
   CreditButton,
-  DetailButton
+  DetailButton,
+  Label,
+  PerMonthValue
 } from './components/common'
 
 function App() {
@@ -13,7 +16,12 @@ function App() {
     <Main>
       <Container>
         <Title>Simulá tu crédito</Title>
-        <PerMonth>cuota fija por mes</PerMonth>
+        <CustomSlider title="Monto total" max={50000} step={500} currency />
+        <CustomSlider title="Plazo" min={3} max={24} />
+        <PerMonth>
+          <Label>cuota fija por mes</Label>
+          <PerMonthValue>$ 2,412.91</PerMonthValue>
+        </PerMonth>
         <ButtonsContainer>
           <CreditButton>obtené crédito</CreditButton>
           <DetailButton>ver detalle de cuotas</DetailButton>
