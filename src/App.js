@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import CustomSlider from './components/CustomSlider';
 import { 
   Main,
@@ -10,17 +11,30 @@ import {
   Label,
   PerMonthValue
 } from './components/common'
+import toCurrency from './utils/toCurrency';
+import { MAXIMUM_MONTHS, MINIMAL_MONTHS, MAXIMUM_MOUNT, MINIMAL_MOUNT } from './constants/limits';
 
 function App() {
+  const [mount, setMount] = useState(MINIMAL_MOUNT)
+  const [months, setMonths] = useState(MINIMAL_MONTHS)
+
+  const fee = (mount / months).toFixed(2)
+
+  const SLIDERS = [
+    { title:"Monto total", value: mount, onChange: setMount, max: MAXIMUM_MOUNT, step: 500, currency: true },
+    { title:"Plazo", value: months, onChange: setMonths, min: MINIMAL_MOUNT, max: MAXIMUM_MONTHS }
+  ]
+
   return (
     <Main>
       <Container>
         <Title>Simulá tu crédito</Title>
-        <CustomSlider title="Monto total" max={50000} step={500} currency />
-        <CustomSlider title="Plazo" min={3} max={24} />
+        { SLIDERS.map(sliderProps => <CustomSlider {...sliderProps}/>)}
         <PerMonth>
           <Label>cuota fija por mes</Label>
-          <PerMonthValue>$ 2,412.91</PerMonthValue>
+          <PerMonthValue>
+            { toCurrency({ value: fee, options: {maximumFractionDigits: 2} })}
+          </PerMonthValue>
         </PerMonth>
         <ButtonsContainer>
           <CreditButton>obtené crédito</CreditButton>

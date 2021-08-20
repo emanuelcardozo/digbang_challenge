@@ -1,6 +1,7 @@
 .custom_slider {
     width: 90%;
-    margin: auto
+    margin: auto;
+    cursor: pointer;
 }
 
 .custom_slider .rc-slider-track {

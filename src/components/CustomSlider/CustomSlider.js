@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Slider from 'rc-slider'
 import CustomInput from '../CustomInput';
 import toCurrency from '../../utils/toCurrency';
@@ -6,12 +5,10 @@ import { SliderSection, Header, Label, Mark } from './CustomSliderSubcomponents'
 import 'rc-slider/assets/index.css';
 import '../../styles/Slider.css'
 
-function CustomSlider({ title, min=0, max, step=1, currency=false }) {
-    const [value, setValue] = useState(min)
-
+function CustomSlider({ value, onChange, title, min=0, max, step=1, currency=false }) {
     const marks = {
-        [min]: <Mark>{currency ? toCurrency(min) : min}</Mark>,
-        [max]: <Mark>{currency ? toCurrency(max) : max}</Mark>
+        [min]: <Mark>{currency ? toCurrency({value: min}) : min}</Mark>,
+        [max]: <Mark>{currency ? toCurrency({value: max}) : max}</Mark>
     }
 
     return (
@@ -24,7 +21,7 @@ function CustomSlider({ title, min=0, max, step=1, currency=false }) {
                     max={max}
                     step={step}
                     currency={currency} 
-                    onChange={ ({target: {value}}) => setValue(value > max ? max : value)} 
+                    onChange={ ({target: {value}}) => onChange(value > max ? max : value)} 
                 />
             </Header>
             <Slider 
@@ -32,7 +29,7 @@ function CustomSlider({ title, min=0, max, step=1, currency=false }) {
                 min={min}
                 max={max}
                 step={step}
-                onChange={setValue}
+                onChange={onChange}
                 marks={marks}
                 value={value}
             />
